@@ -1,0 +1,9 @@
+
+version: '3'
+services:
+  db:
+    build: dev_db/
+    ports:
+      - "27017:27017"
+    volumes:
+      - "$PWD/dev_db/data:/data/db"
