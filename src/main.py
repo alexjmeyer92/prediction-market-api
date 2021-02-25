@@ -1,5 +1,5 @@
 from fastapi import FastAPI
-from src.api import core, market_management
+from src.api import core, market_management, bidding
 
 app: FastAPI = FastAPI(
         title="Prediction Market API",
@@ -11,6 +11,7 @@ app: FastAPI = FastAPI(
 
 app.include_router(core.router, tags=["Core"])
 app.include_router(market_management.router, tags=["Market Management"])
+app.include_router(bidding.router, tags=["Bid Management"])
 
 if __name__ == '__main__':
     import uvicorn  # type: ignore # pragma: no cover

@@ -13,7 +13,7 @@ async def create_markets(markets_data: MarketModel) -> MarketsResponse:
     """
     A post request to /markets will create a new market for each market submitted
     """
-    market_id = market_db_client.database.markets.insert_one(markets_data.dict())
+    market_id = market_db_client.database.markets.insert_one(markets_data.dict(by_alias=True))
 
     return MarketsResponse(message="market {} created successfully".format(market_id))
 
@@ -23,7 +23,7 @@ async def delete_markets(market_name: str) -> MarketsResponse:
     """
     a delete request to /markets will remove the market by name
     """
-    db_response = market_db_client.database.markets.remove({"name": market_name})
+    db_response = market_db_client.markets_collection.remove({"name": market_name})
 
     return MarketsResponse(message="Market {} deleted".format(db_response))
 
