@@ -13,6 +13,7 @@ def test_root():
 
 
 def test_health():
+    # @todo fix this test and figure out how to mock / test against mongodb
     response = client.get("/health")
 
     assert response.status_code == 200

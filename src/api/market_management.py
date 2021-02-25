@@ -8,6 +8,8 @@ from src.db_client import market_db_client
 router: APIRouter = APIRouter()
 
 
+# @todo error handling in market management endpoints
+
 @router.post("/markets", status_code=201, response_model=MarketsResponse)
 async def create_markets(markets_data: MarketModel) -> MarketsResponse:
     """

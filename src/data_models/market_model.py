@@ -1,7 +1,7 @@
 from pydantic import BaseModel, Field, validator
 from uuid import UUID, uuid4
 
-from typing import List
+from typing import List, Any
 
 
 class BidModel(BaseModel):
@@ -22,6 +22,7 @@ class BidRequestModel(BaseModel):
         assert type in ['buy', 'sell']
         return type
 
+
 class BidResponseModel(BaseModel):
     message: str
     success: bool
@@ -34,7 +35,6 @@ class ConditionsModel(BaseModel):
     sell: List[BidModel] = []
 
 
-# @todo figure out how to automatically set the _id attribute in mongo to be the market name
 class MarketModel(BaseModel):
     id: str = Field(alias="_id", default_factory=str)
     market_id: UUID = uuid4()
@@ -44,7 +44,7 @@ class MarketModel(BaseModel):
     closed: bool = False
     conditions: List[ConditionsModel] = []
 
-    def __init__(self, **data):
+    def __init__(self, **data: Any) -> None:
         super().__init__(**data)
         self.id = self.name
 
