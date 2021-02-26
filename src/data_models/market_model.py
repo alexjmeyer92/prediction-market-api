@@ -25,7 +25,7 @@ class BidRequestModel(BaseModel):
 
 class BidResponseModel(BaseModel):
     message: str
-    success: bool
+    successful: bool
     bid_data: BidRequestModel
 
 
