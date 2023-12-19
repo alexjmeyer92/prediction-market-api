@@ -130,3 +130,6 @@ dmypy.json
 
 # Pycharm stuff
 .idea
+
+# ignore data from dedb
+/dev_db/data/*
